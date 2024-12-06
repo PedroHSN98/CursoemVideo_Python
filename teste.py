@@ -1,12 +1,58 @@
-def formula_quadratica(a, b, c):
-    delta = b**2 -4*a*c
-    x1 = (-b + delta**0.5)/(2*a)
-    x2 = (-b - delta**0.5)/(2*a)
-    return x1, x2
+'''
+Faça um programa em que o usuario insere uma rota de viagem passando pelas seguintes cidades de MT:
+
+0 - Cuiabá
+1 - rondonopolis
+2 - primavera do leste
+
+Você deve completar o codigo para que o programa mostre o tempo total de uma viagem passando por pelo menos duas cidades
+
+Exemplo de rota : 0, 1, 2, 0
+                  0, 2, 1, 0
+                  1, 0, 2, 0, 1
+'''
+def obter_rota():
+    qtd_ponto = int(input('Quantos pontos de parada deseja inserir? '))
+    while qtd_ponto < 2:
+        print('A rota deve ter no mínimo 2 pontos.')
+        qtd_ponto = int(input('Quantos pontos de parada deseja inserir? '))
+    
+    rota = []
+    for i in range(qtd_ponto):
+        cidade = int(input(f'Insira a {i + 1}° cidade (0 - Cuiabá, 1 - Rondonópolis, 2 - Primavera do Leste): '))
+        while cidade not in [0, 1, 2]:
+            print('Cidade inválida. Escolha entre 0, 1 ou 2.')
+            cidade = int(input(f'Insira a {i + 1}° cidade (0 - Cuiabá, 1 - Rondonópolis, 2 - Primavera do Leste): '))
+        rota.append(cidade)
+    return rota
 
 
-coef_a = float(input('A: '))
-coef_b = float(input('B: '))
-coef_c = float(input('C: '))
-raiz1, raiz2 = formula_quadratica(coef_a, coef_b, coef_c)
-print(raiz1, raiz2)
+def calcular_tempo_total(rota, tempos):
+    tempo_total = 0
+    for i in range(len(rota) - 1):
+        origem = rota[i]
+        destino = rota[i + 1]
+        tempo_total += tempos[origem][destino]
+    return tempo_total
+
+
+# Tabela de tempos entre as cidades (em horas)
+# tempo_de_viagem[origem][destino]
+tempo_de_viagem = [
+    [0, 3.25, 3.5],  # 0 - Cuiabá
+    [3.25, 0, 3.1],  # 1 - Rondonópolis
+    [3.5, 3.1, 0]    # 2 - Primavera do Leste
+]
+
+# Programa principal
+print('Cidades disponíveis:')
+print('0 - Cuiabá')
+print('1 - Rondonópolis')
+print('2 - Primavera do Leste')
+print('Insira os números correspondentes às cidades para definir a rota.')
+
+rota = obter_rota()
+tempo_total = calcular_tempo_total(rota, tempo_de_viagem)
+
+print(f'Rota escolhida: {rota}')
+print(f'Tempo total da viagem: {tempo_total:.2f} horas')
