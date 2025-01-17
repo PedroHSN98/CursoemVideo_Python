@@ -1,7 +1,9 @@
-print('Olá, Mundo')
+nome = 'Guanabara'
+cores = {
+    'limpa': '\033[m',
+    'azul': '\033[34m',
+    'amarelo': '\033[33m',
+    'pretoebranco': '\033[7;30m'
+}
 
-r = 3 * 5 + 4 ** 2
-print(f'{r}')
-
-
-#terminal com cores, n foi feito, pois n achei mt relevante pra uso ainda. 
+print(f"Olá! Muito prazer em te conhecer, {cores['pretoebranco']}{nome}{cores['limpa']}!!")
