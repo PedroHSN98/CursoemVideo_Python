@@ -9,5 +9,5 @@ elif n1 == n2 and n2 == n1:
     print('Os dois numeros são iguais, por isso não tem um maior que o outro') 
 
 else:
-    print('Algo deu etrado!')
+    print('Algo deu errado!')
 
