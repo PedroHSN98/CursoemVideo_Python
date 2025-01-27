@@ -5,7 +5,10 @@ entre todos os numeros impares que sao
  intervalo de 1 ate 500
 '''
 
-for i in range(0, 501):
+cont = 0 
+soma = 0
+for i in range(1, 501, 2):
     if i % 3 == 0:
-        print(i)
-print('Esses são os numeros IMPARES que são multiplicados por 3')
+        cont = cont + 1
+        soma = soma + i
+print(f'A soma de todos os {cont} valores solicitados é {soma}')
